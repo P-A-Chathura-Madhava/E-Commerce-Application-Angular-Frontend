@@ -26,6 +26,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { DragDirective } from './drag.directive';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [
     AuthGuard,
