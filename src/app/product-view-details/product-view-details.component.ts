@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../_model/product.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-view-details',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductViewDetailsComponent implements OnInit {
 
-  constructor() { }
+  selectProductIndex = 0;
+  product: Product;
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.product = this.activatedRoute.snapshot.data['product'];
+  }
+
+  changeIndex(index){
+    this.selectProductIndex=index;
   }
 
 }
