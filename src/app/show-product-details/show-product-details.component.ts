@@ -18,12 +18,10 @@ export class ShowProductDetailsComponent implements OnInit {
   displayedColumns: string[] = [
     "Id",
     "Product Name",
-    "Product Description",
+    "description",
     "Product Discounted Price",
     "Product Actual Price",
-    "Images",
-    "Edit",
-    "Delete",
+    "Actions"
   ];
 
   constructor(
