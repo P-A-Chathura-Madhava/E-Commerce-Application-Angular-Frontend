@@ -51,48 +51,55 @@
             >
               Clear
             </button>
-            <button type="submit" mat-stroked-button color="primary">
+            <button type="submit" mat-stroked-button color="primary" *ngIf="isNewProduct">
               Add Product
             </button>
-            <button mat-stroked-button color="primary">Update Product</button>
+            <button mat-stroked-button color="primary" *ngIf="!isNewProduct">Update Product</button>
           </div>
         </form>
       </div>
 
       <div class="col-6">
         <div>
-
-          <div class="dropzone"
-          appDrag 
-          (files) = "fileDropped($event)">
-              <div class="text-wrapper">
-                  <div class="center">Drag and Drop your Img or 
-                      <a (click)="selectFile.click()" style="color:blueviolet;
-                      font-weight: 800;
-                      cursor: pointer;">Browse</a>  a Img</div>
-                  </div>
+          <div class="dropzone" appDrag (files)="fileDropped($event)">
+            <div class="text-wrapper">
+              <div class="center">
+                Drag and Drop your Img or
+                <a
+                  (click)="selectFile.click()"
+                  style="color: blueviolet; font-weight: 800; cursor: pointer"
+                  >Browse</a
+                >
+                a Img
+              </div>
+            </div>
           </div>
 
-
-          <input multiple
-          type="file"
-          style="display: none;"
-          #selectFile  
-          value="select"
-          (change)="onFileSelected($event)">
-      </div>
-      <div class="mt-5">
+          <input
+            multiple
+            type="file"
+            style="display: none"
+            #selectFile
+            value="select"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+        <div class="mt-5">
           <div class="row">
-              <mat-grid-list cols="4" rowHeight="1:1">
-                  <mat-grid-tile *ngFor="let file of product.productImages; let i = index;">
-                      <div style="position: relative">
-                          <span class="btn-remove-image" (click)="removeImages(i)">X</span>
-                          <img [src]="file.url" width="100px" height="100px">
-                      </div>
-                  </mat-grid-tile>
-              </mat-grid-list>
+            <mat-grid-list cols="4" rowHeight="1:1">
+              <mat-grid-tile
+                *ngFor="let file of product.productImages; let i = index"
+              >
+                <div style="position: relative">
+                  <span class="btn-remove-image" (click)="removeImages(i)"
+                    >X</span
+                  >
+                  <img [src]="file.url" width="100px" height="100px" />
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
           </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
