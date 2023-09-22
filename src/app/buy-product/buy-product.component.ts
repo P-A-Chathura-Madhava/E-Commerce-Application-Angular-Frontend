@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { OrderDetails } from "../_model/order-details.model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "../_services/product.service";
 import { Product } from "../_model/product.model";
 
@@ -23,7 +23,8 @@ export class BuyProductComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class BuyProductComponent implements OnInit {
         (resp) => {
           console.log(resp);
           orderForm.reset();
-          // this.router.navigate(["/orderConfirm"])
+          this.router.navigate(["/orderConfirm"])
         },
         (err) => {
           console.log(err);
