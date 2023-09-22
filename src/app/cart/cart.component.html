@@ -1,7 +1,7 @@
 <div class="container mt-5">
 
     <div align="right" class="mb-3">
-      <button mat-raised-button style="color: gold; padding: 10px 20px;">Checkout</button>
+      <button mat-raised-button (click)="checkout()" style="color: gold; padding: 10px 20px;">Checkout</button>
     </div>
   
       <table mat-table [dataSource]="cartDetails" class="mat-elevation-z8">
