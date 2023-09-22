@@ -37,7 +37,7 @@ export class ShowProductDetailsComponent implements OnInit {
 
   public getAllProducts() {
     this.productService
-      .getAllProducts()
+      .getAllProducts(0)
       .pipe(
         map((x: Product[], i) =>
           x.map((product: Product) =>
