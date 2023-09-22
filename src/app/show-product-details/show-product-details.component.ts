@@ -14,6 +14,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./show-product-details.component.css"],
 })
 export class ShowProductDetailsComponent implements OnInit {
+  showLoadMoreProductButton = false;
+  showTable = false;
+  pageNumber: number = 0;
   productDetails: Product[] = [];
   displayedColumns: string[] = [
     "Id",
@@ -21,7 +24,7 @@ export class ShowProductDetailsComponent implements OnInit {
     "description",
     "Product Discounted Price",
     "Product Actual Price",
-    "Actions"
+    "Actions",
   ];
 
   constructor(
@@ -36,8 +39,9 @@ export class ShowProductDetailsComponent implements OnInit {
   }
 
   public getAllProducts() {
+    this.showTable = false;
     this.productService
-      .getAllProducts(0)
+      .getAllProducts(this.pageNumber)
       .pipe(
         map((x: Product[], i) =>
           x.map((product: Product) =>
@@ -48,7 +52,14 @@ export class ShowProductDetailsComponent implements OnInit {
       .subscribe(
         (resp: Product[]) => {
           console.log(resp);
-          this.productDetails = resp;
+          resp.forEach((product) => this.productDetails.push(product));
+
+          this.showTable = true;
+          if (resp.length == 12) {
+            this.showLoadMoreProductButton = true;
+          } else {
+            this.showLoadMoreProductButton = false;
+          }
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -78,7 +89,12 @@ export class ShowProductDetailsComponent implements OnInit {
     });
   }
 
-  editProductDetails(productId){
-    this.router.navigate(['/addNewProduct', {productId: productId}])
+  editProductDetails(productId) {
+    this.router.navigate(["/addNewProduct", { productId: productId }]);
+  }
+
+  loadMoreProduct() {
+    this.pageNumber = this.pageNumber + 1;
+    this.getAllProducts();
   }
 }
