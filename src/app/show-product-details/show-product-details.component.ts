@@ -38,10 +38,16 @@ export class ShowProductDetailsComponent implements OnInit {
     this.getAllProducts();
   }
 
-  public getAllProducts() {
+  searchByKeyword(searchkeyword) {
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchkeyword);
+  }
+
+  public getAllProducts(searchKey: string = "") {
     this.showTable = false;
     this.productService
-      .getAllProducts(this.pageNumber)
+      .getAllProducts(this.pageNumber, searchKey)
       .pipe(
         map((x: Product[], i) =>
           x.map((product: Product) =>
