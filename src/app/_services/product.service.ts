@@ -31,7 +31,7 @@ export class ProductService {
    }
 
    public placeOrder(orderDetails: OrderDetails, isCartCheckout){
-    return this.httpClient.post("http://localhost:9090/placeOrder/", orderDetails);
+    return this.httpClient.post("http://localhost:9090/placeOrder/"+isCartCheckout, orderDetails);
    }
 
    public addToCart(productId){
