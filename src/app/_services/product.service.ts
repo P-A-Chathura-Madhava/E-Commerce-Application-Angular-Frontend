@@ -42,4 +42,8 @@ export class ProductService {
     return this.httpClient.get("http://localhost:9090/getCartDetails");
    }
 
+   public deleteCartItem(cartId){
+    return this.httpClient.delete("http://localhost:9090/deleteCartItem/"+cartId);
+   }
+
 }
